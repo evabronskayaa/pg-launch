@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "pg-launching"
+name = "pg-launch"
 version = "0.1.0"
 description = ""
 authors = ["evabronskayaa <evabronskayaa@gmail.com>"]
@@ -7,6 +7,11 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.12"
+alembic = "^1.13.2"
+sqlalchemy = "^2.0.31"
+fastapi = "^0.111.0"
+python-dotenv = "^1.0.1"
+uvicorn = "^0.30.1"
 
 
 [build-system]

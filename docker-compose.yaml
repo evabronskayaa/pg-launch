@@ -1,0 +1,38 @@
+version: "3.8"
+services:
+  postgres:
+    image: postgres:14.2
+    ports:
+      - "${DB_PORT}:5432"
+    volumes:
+      - "./postgres:/var/lib/postgresql/data"
+      - "./sample_data:/docker-entrypoint-initdb.d" 
+    env_file:
+      - .env
+  
+  pg_admin:
+    image: dpage/pgadmin4:latest
+    depends_on:
+      - postgres
+    ports:
+      - "${PGADMIN_PORT}:80"
+    env_file:
+      - .env
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+
+  sqlpad:
+    image: sqlpad/sqlpad:latest
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    depends_on:
+      - postgres
+    volumes:
+      - sqlpad_data:/sqlpad 
+
+volumes:
+  postgres_data:
+  pgadmin_data:
+  sqlpad_data:
