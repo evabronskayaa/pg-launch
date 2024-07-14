@@ -6,7 +6,6 @@ services:
       - "${DB_PORT}:5432"
     volumes:
       - "./postgres:/var/lib/postgresql/data"
-      - "./sample_data:/docker-entrypoint-initdb.d" 
     env_file:
       - .env
   
@@ -24,7 +23,7 @@ services:
   sqlpad:
     image: sqlpad/sqlpad:latest
     ports:
-      - "3000:3000"
+      - "${SQLPAD_PORT}:3000"
     env_file:
       - .env
     depends_on:
